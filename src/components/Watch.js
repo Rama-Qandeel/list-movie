@@ -4,8 +4,8 @@ const Favorite = () => {
   const [watch, setWatch] = useState([]);
 
   const watchedMovie = (props) => {
-    // console.log('movie : ',props.target.id);
-
+    console.log('movie : ',props.target.id);
+    
     let index = watch.findIndex((movie) => movie.id == props.target.id);
     // console.log('index',index);
     let listmovie = JSON.parse(localStorage.getItem("watch"));
