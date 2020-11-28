@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PopUp from "./PopUp";
+import PopUpWatch from './PopUpWatch'
 const Information = (props) => {
   // console.log("props ", props.location.state);
-  const [watch, setWatch] = useState([]);
   const [seen, setSeen] = useState(false);
   const {
     title,
@@ -19,19 +19,6 @@ const Information = (props) => {
     setSeen(!seen);
   };
 
-
-  const addWatchList = () => {
-    if (!localStorage.getItem("watch")) {
-      const movie = [];
-      movie.push(props.location.state);
-      localStorage.setItem("watch", JSON.stringify(movie));
-    } else {
-      const movies = JSON.parse(localStorage.getItem("watch"));
-      movies.push(props.location.state);
-      localStorage.setItem("watch", JSON.stringify(movies));
-    }
-    setWatch(JSON.parse(localStorage.getItem("watch")));
-  };
 
   return (
     <div className="result">
@@ -91,15 +78,19 @@ const Information = (props) => {
         <div>
           {" "}
           <div className="" onClick={togglePop}>
-            {/* <button className="btn-add"  onClick={addFavorite}>Favorite</button> */}
             <button className="btn-add">Favorite</button>
           </div>
           {seen ? (
             <PopUp toggle={togglePop} info={props.location.state} />
           ) : null}
-          <button className="btn-add" onClick={addWatchList}>
+         <div className="" onClick={togglePop}>
+          <button className="btn-add" >
             Add to WatchList
           </button>
+          </div>
+          {seen ? (
+            <PopUpWatch toggle={togglePop} info={props.location.state} />
+          ) : null}
         </div>
       </div>
     </div>
